@@ -1,3 +1,4 @@
 config/rally.yml
 tags
 tmp
+*.swp
