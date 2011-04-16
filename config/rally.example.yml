@@ -1,0 +1,6 @@
+base_url: 'https://trial.rallydev.com/slm'
+workspace: 'mydefinedworkspace'
+username: 'foo@bar.com'
+password: 'my_password'
+project: 'my_project'
+
