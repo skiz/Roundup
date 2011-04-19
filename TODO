@@ -1,9 +1,5 @@
 add specs for roundup code
 build resource objects to represent remote resources
-rewrite README
-  - add examples of existing functionality
-  - reference the full rdoc documentation
-  - add examples of plugins
 rewrite plugin system
 plugin docs
-
+add vim plugin support
