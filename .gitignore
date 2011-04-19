@@ -1,4 +1,5 @@
 config/rally.yml
-tags
+rdoc
+otags
 tmp
 *.swp

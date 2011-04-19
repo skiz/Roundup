@@ -1,15 +1,14 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
 require 'rubygems'
 require 'bundler/setup'
 
 require 'yaml'
-require 'rally_rest_api'
 require 'builder'
-
+require 'rally_rest_api'
 require 'active_support'
+
 require 'roundup/exceptions'
 require 'roundup/core'
+require 'roundup/config'
 require 'roundup/plugin'
 
 config = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config','rally.yml'))
@@ -22,6 +21,4 @@ Roundup.setup do |opt|
   opt.project   = config['project']
   opt.workspace = config['workspace']
 end
-
-Roundup.process(ARGV)
 

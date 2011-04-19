@@ -1,0 +1,15 @@
+add specs for roundup code
+build resource objects to represent remote resources
+add bin script
+  - system agnostic
+  - passes ARG properly
+  - parses ARG and calls the library
+  - removes
+rewrite README
+  - add examples of existing functionality
+  - reference the full rdoc documentation
+add specs to 
+rewrite plugin system
+plugin docs
+
+

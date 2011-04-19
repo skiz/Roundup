@@ -1,6 +1,6 @@
 class Roundup::Plugin::Search < Roundup::Plugin
 
-  on_command "search", :search
+  register_command "search", :search
 
   # searching requires the type to be provided
   # ex: defect, story
