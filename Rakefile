@@ -1,15 +1,21 @@
 require 'rake'
-require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rcov/rcovtask'
+require 'rspec/core/rake_task'
 
-#Rake::TestTask.new(:test) do |test|
-  #test.libs << 'lib' << 'test'
-  #test.pattern = 'test/**/test_*.rb'
-  #test.verbose = true
-#end
+desc "Run all specs"
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = "./spec/**/*_spec.rb"
+end
 
-Rake::RDocTask.new do |rdoc|
+desc "Generate code coverage"
+RSpec::Core::RakeTask.new(:rcov) do |t|
+  t.pattern = "./spec/**/*_spec.rb"
+  t.rcov = true
+  t.rcov_opts = ['--exclude', 'spec']
+end
+
+Rake::RDocTask.new(:doc) do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "Roundup #{version}"
@@ -17,11 +23,5 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-task :default => :test
+task :default => :spec
 
