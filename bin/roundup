@@ -4,6 +4,21 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'roundup'
 
-Roundup.process(ARGV)
+config = YAML.load_file(File.join(File.dirname(__FILE__), '..', 'config','rally.yml'))
+Dir[File.join(File.dirname(__FILE__), '..', 'lib', 'plugins') + '/*.rb'].each {|file| require file }
 
+Roundup.setup do |opt|
+  opt.base_url  = config['base_url']
+  opt.username  = config['username']
+  opt.password  = config['password']
+  opt.project   = config['project']
+  opt.workspace = config['workspace']
+end
+
+valid_commands = Roundup::Plugin.registered_commands.keys
+unless valid_commands.include?(ARGV[0])
+  puts "\"#{ARGV[0]}\" is not a valid command. Available commands: \"#{valid_commands.join('", "')}\""
+end
+
+Roundup.process(ARGV)
 
