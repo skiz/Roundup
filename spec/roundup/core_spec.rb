@@ -60,14 +60,18 @@ describe Roundup do
   describe "when processing a command" do
     before do
       Roundup::Config.stub!(:new).and_return(@config)
-      @commands = [{:method => 'puts', :klass => 'Kernel' }]
+      @commands = {'foobar' => {:method => 'puts', :klass => 'Kernel' }}
+      Roundup::Plugin.should_receive(:registered_commands).and_return(@commands)
     end
 
-    it "should confirm availability of a command" do
-      Roundup::Plugin.shoudl_receive(:registered_commands).and_return[:foobar]
+    it "should evaluate a registered command" do
+      Kernel.should_receive(:puts).with(['baz'])
+      Roundup.process(['foobar','baz'])
     end
 
-    it "should evaluate a registered class method" do
+    it "should not evaulate undefined commands" do
+      Roundup.should_not_receive(:eval)
+      Roundup.process(['yoink'])
     end
 
   end
