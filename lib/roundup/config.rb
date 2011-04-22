@@ -1,5 +1,6 @@
 module Roundup
   class Config
+
     def self.options(*vars)
       (@attributes ||= []).concat vars
       attr_accessor(*vars)

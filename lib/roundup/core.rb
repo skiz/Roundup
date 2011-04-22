@@ -3,7 +3,7 @@ module Roundup
     attr_accessor :config, :rally, :workspace, :project
 
     def setup(*args)
-      @config = Config.new
+      @config = Config.new(*args)
       yield @config if block_given?
       @rally = RallyRestAPI.new(@config.to_hash)
       configure_workspace(@config.workspace)
