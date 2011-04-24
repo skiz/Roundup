@@ -1,6 +1,10 @@
 module Roundup
   class Config
 
+    def initialize(attrs={})
+      attrs.each{|k,v| self.send(:"#{k}=", v) }
+    end
+
     def self.options(*vars)
       (@attributes ||= []).concat vars
       attr_accessor(*vars)
